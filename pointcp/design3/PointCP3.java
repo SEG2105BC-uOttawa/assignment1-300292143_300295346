@@ -1,8 +1,27 @@
-public class PointCP3 {
+package design3;
+
+// This file contains material supporting section 2.9 of the textbook:
+// "Object Oriented Software Engineering" and is issued under the open-source
+// license found at http://www.site.uottawa.ca/school/research/lloseng/
+
+import design5.PointCP5;
+
+/**
+ * This class contains instances of coordinates in either polar or
+ * cartesian format.  It also provides the utilities to convert
+ * them into the other type. It is not an optimal design, it is used
+ * only to illustrate some design issues.
+ *
+ * @author Fran&ccedil;ois B&eacute;langer
+ * @author Dr Timothy C. Lethbridge
+ * @version July 2000
+ */
+public class PointCP3 extends PointCP5
+{
     //Instance variables ************************************************
 
     /**
-     * Contains C(artesian) or P(olar) to identify the type of
+     * Contains C(artesian) to identify the type of
      * coordinates that are being dealt with.
      */
     private char typeCoord;
@@ -11,13 +30,13 @@ public class PointCP3 {
      * Contains the current value of X or RHO depending on the type
      * of coordinates.
      */
-    private double X;
+    private double x;
 
     /**
      * Contains the current value of Y or THETA value depending on the
      * type of coordinates.
      */
-    private double Y;
+    private double y;
 
 
     //Constructors ******************************************************
@@ -25,43 +44,64 @@ public class PointCP3 {
     /**
      * Constructs a coordinate object, with a type identifier.
      */
-    public PointCP3(char type, double X, double Y)
+    public PointCP3(char type, double xOrRho, double yOrTheta)
     {
-        if(type != 'C' && type != 'P') {
+        if(type != 'C')
             throw new IllegalArgumentException();
-        }
-
-        if (type == 'P'){
-            X = Math.cos(Math.toRadians(Y)) * X;
-            Y = Math.sin(Math.toRadians(Y)) * X;
-        }
-        this.X = X;
-        this.Y = Y;
-        typeCoord = 'C';
+        this.x = xOrRho;
+        this.y = yOrTheta;
+        typeCoord = type;
     }
 
 
     //Instance methods **************************************************
 
-
+    /*
+     * Test:  done
+     */
     public double getX()
     {
-        return X;
+        return x;
     }
-
+    /*
+     * Test:  done
+     */
     public double getY()
     {
-        return Y;
+        return y;
+    }
+    /*
+     * Test:  done
+     */
+    public double getRho() {
+        return (Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
+    }
+    /*
+     * Test:  done
+     */
+    public double getTheta() {
+        return Math.toDegrees(Math.atan2(y, x));
     }
 
-    public double getRho()
-    {
-        return (Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2)));
-    }
 
-    public double getTheta()
+    /**
+     * Converts Cartesian coordinates to Polar coordinates.
+     */
+    /*
+     * Test:  done
+     */
+    public void convertStorageToPolar()
     {
-        return Math.toDegrees(Math.atan2(Y, X));
+        double Rho = getRho();
+        double Theta = getTheta();
+
+        System.out.println("Value of Rho: "+getRho()+", Value of Theta: "+getTheta());
+    }
+    public void convertStorageToPolar2()
+    {
+        double Rho = getRho();
+        double Theta = getTheta();
+
     }
 
 
@@ -69,9 +109,13 @@ public class PointCP3 {
      * Calculates the distance in between two points using the Pythagorean
      * theorem  (C ^ 2 = A ^ 2 + B ^ 2). Not needed until E2.30.
      *
-     * @param pointA The first point.
+     * @param //pointA The first point.
      * @param pointB The second point.
      * @return The distance between the two points.
+     */
+
+    /*
+     * Test:  done
      */
     public double getDistance(PointCP3 pointB)
     {
@@ -87,9 +131,13 @@ public class PointCP3 {
      * Rotates the specified point by the specified number of degrees.
      * Not required until E2.30
      *
-     * @param point The point to rotate
+     * @param //point The point to rotate
      * @param rotation The number of degrees to rotate the point.
      * @return The rotated image of the original point.
+     */
+
+    /*
+     * Test:  done
      */
     public PointCP3 rotatePoint(double rotation)
     {
@@ -107,16 +155,10 @@ public class PointCP3 {
      *
      * @return A String containing information about the coordinates.
      */
+
+
     public String toString()
     {
-        String returnString = "";
-        if(typeCoord=='P') {
-            returnString += "Computed Polar but not stored:\n (" + getRho() + "," + getTheta() + ")";
-        }
-        if(typeCoord=='C') {
-            returnString += "Stored as Cartesian [" + getX() + "," + getY() + "]";
-        }
-        return returnString;
+        return "Cartesian  (" + getRho() + "," + getTheta() + ")";
     }
 }
-

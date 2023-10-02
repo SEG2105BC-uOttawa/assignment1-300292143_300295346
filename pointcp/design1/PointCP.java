@@ -2,6 +2,8 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at http://www.site.uottawa.ca/school/research/lloseng/
 
+package design1;
+
 /**
  * This class contains instances of coordinates in either polar or
  * cartesian format.  It also provides the utilities to convert
@@ -122,7 +124,7 @@ public class PointCP
    * Calculates the distance in between two points using the Pythagorean
    * theorem  (C ^ 2 = A ^ 2 + B ^ 2). Not needed until E2.30.
    *
-   * @param pointA The first point.
+   * @param// pointA The first point.
    * @param pointB The second point.
    * @return The distance between the two points.
    */
@@ -140,7 +142,7 @@ public class PointCP
    * Rotates the specified point by the specified number of degrees.
    * Not required until E2.30
    *
-   * @param point The point to rotate
+   * @param //point The point to rotate
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
